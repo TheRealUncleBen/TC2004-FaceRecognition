@@ -10,14 +10,13 @@ class FaceDetector
 private:
     cv::CascadeClassifier face_cascade;
     int next_height;
-    int window_scaling;
+    double window_scaling;
     int minClassifiers;
     int imgHeight;
     int flags;
 
 public:
-    FaceDetector(std::string face_cascade_name, int next_height_);
-    FaceDetector(std::string face_cascade_name, int next_height_, int scale_factor, int minConsensus, int next_height_img, int flag);
+    FaceDetector(std::string face_cascade_name, int next_height_ = 40, double scale_factor = 1.1, int minConsensus = 4, int next_height_img = 40, int flag = 0);
     FaceDetector();
     ~FaceDetector(){};
     std::vector<cv::Rect> nextFrame(cv::Mat frame);

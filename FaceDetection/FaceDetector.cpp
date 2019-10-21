@@ -2,17 +2,6 @@
 using namespace cv;
 using namespace std;
 
-//@ constructor requiere el path a los xml con los datos para el Cascade Classifier
-FaceDetector::FaceDetector(string face_cascade_name, int next_height_)
-{
-        face_cascade.load(face_cascade_name);
-        next_height = next_height_;
-        window_scaling = 1.1;
-        minClassifiers = 4;
-        imgHeight = 40;
-        flags = 0;
-}
-
 FaceDetector::FaceDetector()
 {
         face_cascade.load("D:/OpenCV/opencv/user_build/install/etc/haarcascades/haarcascade_frontalface_alt.xml"); //Hay que hacer esto genericamente
@@ -25,7 +14,7 @@ FaceDetector::FaceDetector()
         flags = 0;
 }
 
-FaceDetector::FaceDetector(string face_cascade_name, int next_height_, int scale_factor, int minConsensus, int next_height_img, int flag)
+FaceDetector::FaceDetector(string face_cascade_name, int next_height_, double scale_factor, int minConsensus, int next_height_img, int flag)
 {
         next_height = next_height_;
         face_cascade.load(face_cascade_name);

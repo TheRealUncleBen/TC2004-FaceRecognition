@@ -32,16 +32,19 @@ int main(int argc, const char **argv)
         vector<Rect> faces;
 
         //llamar a la clase
-        FaceDetector Detect(face_cascade_name, next_height);
+        FaceDetector Detect(face_cascade_name, next_height, 1.1, 4, 40, 0);
 
         //Se asigna video en vivo a captura
         capture = VideoCapture(0);
 
+        double fps = capture.get(CAP_PROP_FPS);
+        cout << "FPS maximas: " << fps << endl; //Maximo FPS al que puede llegar al sistema
         //@ Si existe captura...
         if (capture.isOpened())
         {
                 while (true)
                 {
+                        clock_t a = clock(); //Valor de reloj para FPS
                         capture >> frame;
                         //@ Si la matriz no se encuentra vacia...
                         if (!frame.empty())
@@ -67,6 +70,11 @@ int main(int argc, const char **argv)
                         }
 
                         cout << "#########################################" << endl;
+
+                        fps = double(CLOCKS_PER_SEC) / double(clock() - a);
+
+                        //imprimir FPS
+                        cout << "FPS: " << fps << endl;
 
                         //    //mostrar video en vivo con lo que se obtuvo
                 }
